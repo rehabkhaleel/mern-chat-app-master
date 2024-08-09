@@ -96,13 +96,13 @@ const SignUp = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" className='signup-container'>
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          padding: 3,
+          padding: 7,
           borderRadius: 1,
           boxShadow: 3,
           backgroundColor: 'white',
@@ -117,6 +117,7 @@ const SignUp = () => {
           Sign Up <span style={{ color: '#3b71ca' }}>ChatApp</span>
         </Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+        
           <TextField
             label="Full Name"
             fullWidth

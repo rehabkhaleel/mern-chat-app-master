@@ -4,9 +4,9 @@ import { FormControl, FormControlLabel, Checkbox, Typography } from '@mui/materi
 const GenderCheckbox = ({ onCheckboxChange, selectedGender }) => {
   return (
     <FormControl component="fieldset">
-      <Typography variant="body1" gutterBottom>
-        Gender
-      </Typography>
+      <Typography variant="body1" gutterBottom style={{ color: 'black' }}>
+  Gender
+</Typography>
       <FormControlLabel
         control={
           <Checkbox

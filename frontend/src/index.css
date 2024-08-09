@@ -2,10 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: #6d9ebf !important;
 }
 
 /* Ensure the body and html take up full height */
@@ -15,13 +17,14 @@ body {
   background-position: center;
   font-family: 'Helvetica', sans-serif;
   color: #000000;
-  overflow: hidden; /* Prevent body scrolling */
+  overflow: scroll; /* Prevent body scrolling */
+  margin-top: 20rem;
 }
 
 /* Full-height overlay */
 .signup-overlay {
-  position: fixed; /* Fixed to cover entire viewport */
-  top: 0;
+  position:fixed; /* Fixed to cover entire viewport */
+  top: 0 ;
   left: 0;
   width: 100%;
   height: 100%;
@@ -30,7 +33,7 @@ body {
   display: flex; /* Flexbox for centering */
   align-items: center; /* Center vertically */
   justify-content: center; /* Center horizontally */
-  overflow: hidden; /* Prevent scrolling */
+  overflow: scroll; /* Prevent scrolling */
 }
 
 /* Container styling */
@@ -40,10 +43,13 @@ body {
   width: 100%; /* Full width with max-width constraint */
   padding: 1.5rem;
   border-radius: 8px;
-  color: #fff; 
+  margin: 20px;
+  margin-top: 50rem;
+  color: #000000; 
   display: flex;
   flex-direction: column;
   align-items: center; /* Center contents horizontally */
+  overflow: scroll;
 }
 
 @media (max-width: 1200px) {
