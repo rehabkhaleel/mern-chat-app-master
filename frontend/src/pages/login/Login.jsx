@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import useLogin from "../../hooks/useLogin";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { TextField, Button, Container, Typography, Box, CircularProgress, Alert } from '@mui/material';
+import useLogin from '../../hooks/useLogin';
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -25,66 +26,69 @@ const Login = () => {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
-      <div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
-        <h1 className='text-3xl font-semibold text-center text-gray-300'>
-          Login
-          <span className='text-blue-500'> ChatApp</span>
-        </h1>
+    <Container component="main" maxWidth="xs">
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          padding: 3,
+          backgroundColor: 'background.paper',
+          borderRadius: 2,
+          boxShadow: 3,
+        }}
+      >
+        <Typography variant="h4" gutterBottom align="center">
+          Login <span style={{ color: '#3b71ca' }}>ChatApp</span>
+        </Typography>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{ width: '100%' }}>
           {error && (
-            <div className='mb-4 text-red-500 text-center'>
+            <Alert severity="error" sx={{ mb: 2 }}>
               {error}
-            </div>
+            </Alert>
           )}
-          <div>
-            <label className='label p-2'>
-              <span className='text-base label-text'>Email</span>
-            </label>
-            <input
-              type='email'
-              placeholder='Enter email'
-              className='w-full input input-bordered h-10'
-              aria-label='Email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-
-          <div>
-            <label className='label'>
-              <span className='text-base label-text'>Password</span>
-            </label>
-            <input
-              type='password'
-              placeholder='Enter Password'
-              className='w-full input input-bordered h-10'
-              aria-label='Password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+          <TextField
+            label="Email"
+            type="email"
+            fullWidth
+            margin="normal"
+            variant="outlined"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <TextField
+            label="Password"
+            type="password"
+            fullWidth
+            margin="normal"
+            variant="outlined"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
           <Link
-            to='/signup'
-            className='text-sm hover:underline hover:text-blue-600 mt-2 inline-block'
+            to="/signup"
+            style={{ display: 'block', marginTop: 8, textAlign: 'center', color: '#3b71ca', textDecoration: 'none' }}
           >
-            {"Don't"} have an account?
+            Don't have an account?
           </Link>
 
-          <div>
-            <button
-              type='submit'
-              className='btn btn-block btn-sm mt-2'
-              disabled={loading}
-            >
-              {loading ? <span className='loading loading-spinner'></span> : "Login"}
-            </button>
-          </div>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            sx={{ mt: 2 }}
+            disabled={loading}
+          >
+            {loading ? <CircularProgress size={24} color="inherit" /> : "Login"}
+          </Button>
         </form>
-      </div>
-    </div>
+      </Box>
+    </Container>
   );
 };
 

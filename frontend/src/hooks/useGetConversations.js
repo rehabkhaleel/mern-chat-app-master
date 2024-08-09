@@ -14,6 +14,7 @@ const useGetConversations = () => {
 				if (data.error) {
 					throw new Error(data.error);
 				}
+				console.log("Fetched Conversations:", data); // Debugging
 				setConversations(data);
 			} catch (error) {
 				toast.error(error.message);
@@ -27,4 +28,5 @@ const useGetConversations = () => {
 
 	return { loading, conversations };
 };
+
 export default useGetConversations;

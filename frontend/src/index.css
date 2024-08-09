@@ -2,57 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure the body and html take up full height */
 body {
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("/bg.jpg");
-  background-repeat: no-repeat;
-  background-size: cover; /* Ensures the background image covers the entire element */
+  background-color: #6d9ebf;
+  background-size: cover;
   background-position: center;
-  margin: 0; /* Removes default margin */
-  padding: 0; /* Removes default padding */
-  font-family: 'Helvetica', sans-serif; /* Sets a base font */
-  color: #fff; /* Sets a base text color */
+  font-family: 'Helvetica', sans-serif;
+  color: #000000;
+  overflow: hidden; /* Prevent body scrolling */
 }
 
-/* Responsive typography */
-h1, h2, h3, h4, h5, h6 {
-  font-size: 2rem; /* Base font size for headings */
+/* Full-height overlay */
+.signup-overlay {
+  position: fixed; /* Fixed to cover entire viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(247, 244, 244, 0.868); 
+  z-index: 1000; /* Ensure it's on top */
+  display: flex; /* Flexbox for centering */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  overflow: hidden; /* Prevent scrolling */
 }
 
-p {
-  font-size: 1rem; /* Base font size for paragraphs */
+/* Container styling */
+.signup-container {
+  background: rgba(8, 111, 179, 0.5); 
+  max-width: 600px; /* Set max width to a fixed size */
+  width: 100%; /* Full width with max-width constraint */
+  padding: 1.5rem;
+  border-radius: 8px;
+  color: #fff; 
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center contents horizontally */
 }
 
-/* Media queries for responsiveness */
 @media (max-width: 1200px) {
-  /* Styles for screens 1200px wide and below */
-  h1 {
-    font-size: 1.5rem;
+  .signup-container {
+    max-width: 80vw; /* Slightly smaller max-width */
+    padding: 1.25rem; /* Adjust padding */
+  }
+}
+
+@media (max-width: 992px) {
+  .signup-container {
+    max-width: 85vw; /* Slightly larger max-width for medium screens */
+    padding: 1rem; /* Adjust padding */
   }
 }
 
 @media (max-width: 768px) {
-  /* Styles for screens 768px wide and below */
-  h1 {
-    font-size: 1.25rem;
-  }
-
-  p {
-    font-size: 0.875rem;
+  .signup-container {
+    max-width: 90vw; /* Full-width for smaller screens */
+    padding: 0.75rem; /* Adjust padding */
   }
 }
 
-@media (max-width: 480px) {
-  /* Styles for screens 480px wide and below */
-  h1 {
-    font-size: 1rem;
-  }
-
-  p {
-    font-size: 0.75rem;
+@media (max-width: 576px) {
+  .signup-container {
+    max-width: 95vw; /* Nearly full-width */
+    padding: 0.5rem; /* Adjust padding */
   }
 }
 
-/* Dark mode looking scrollbar */
+/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -70,7 +92,63 @@ p {
   background: #242424;
 }
 
-/* Shake animation on horizontal direction */
+/* Responsive typography */
+h1 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 1200px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  h1 {
+    font-size: 1.25rem;
+  }
+
+  p {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.125rem;
+  }
+
+  p {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 0.875rem;
+  }
+
+  p {
+    font-size: 0.65rem;
+  }
+}
+
+/* Shake animation */
 .shake {
   animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) 0.2s both;
   transform: translate3d(0, 0, 0);
@@ -82,15 +160,12 @@ p {
   10%, 90% {
     transform: translate3d(-1px, 0, 0);
   }
-
   20%, 80% {
     transform: translate3d(2px, 0, 0);
   }
-
   30%, 50%, 70% {
     transform: translate3d(-4px, 0, 0);
   }
-
   40%, 60% {
     transform: translate3d(4px, 0, 0);
   }

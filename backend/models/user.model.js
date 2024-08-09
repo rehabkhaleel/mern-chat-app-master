@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    enum: ['male', 'female', 'rather not say'],
+    enum: ['male', 'female'],
     required: true
   },
   role: {
@@ -81,13 +81,12 @@ const userSchema = new mongoose.Schema({
       'Batch 17'
     ]
   },
-  // Uncomment if using the teacher field
-  // teacher: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'User',
-  //   required: function() { return this.role === 'student'; },
-  //   default: null
-  // },
+  teacher: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+   // required: function() { return this.role === 'student'; },
+    default: null
+  },
   students: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

@@ -1,10 +1,8 @@
-import { Link } from "react-router-dom";
-import GenderCheckbox from "./GenderCheckbox";
-import { useState } from "react";
-import useSignup from "../../hooks/useSignup";
-
-const SPECIAL_AUTH_FOR_TEACHER = import.meta.env.VITE_SPECIAL_AUTH_FOR_TEACHER;
-console.log("from signup.jsx", SPECIAL_AUTH_FOR_TEACHER); // for checking
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { TextField, Button, FormControl, InputLabel, Select, MenuItem, Checkbox, FormControlLabel, FormGroup, Typography, Container, Box, Avatar } from '@mui/material';
+import useSignup from '../../hooks/useSignup';
+import Logo from '../../../../frontend/public/smit.png'; // Ensure you have a logo or use a placeholder
 
 const courses = [
   "Graphics Designing",
@@ -34,11 +32,11 @@ const SignUp = () => {
     confirmPassword: "",
     gender: "",
     role: "student",
-    course: "", // Single course for students
-    batch: "", // Single batch for students
-    courses: [], // Multiple courses for teachers
-    batches: [], // Multiple batches for teachers
-    specialKey: "", // Special key for teachers
+    course: "",
+    batch: "",
+    courses: [],
+    batches: [],
+    specialKey: "",
   });
 
   const { loading, signup } = useSignup();
@@ -93,212 +91,195 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Form Data:", inputs); // Debugging log
     await signup(inputs);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-w-screen min-h-screen p-4 md:p-8">
-      <div className="w-full max-w-md p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
-        <h1 className="text-3xl font-semibold text-center text-gray-300 mb-4">
-          Sign Up <span className="text-blue-500">ChatApp</span>
-        </h1>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="label p-2 block">
-              <span className="text-base label-text">Full Name</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Full Name"
-              className="w-full input input-bordered h-10"
-              value={inputs.name}
-              onChange={(e) => setInputs({ ...inputs, name: e.target.value })}
-            />
-          </div>
-
-          <div>
-            <label className="label p-2 block">
-              <span className="text-base label-text">Email</span>
-            </label>
-            <input
-              type="email"
-              placeholder="email@example.com"
-              className="w-full input input-bordered h-10"
-              value={inputs.email}
-              onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
-            />
-          </div>
-
-          <div>
-            <label className="label block">
-              <span className="text-base label-text">Password</span>
-            </label>
-            <input
-              type="password"
-              placeholder="min 6 length"
-              className="w-full input input-bordered h-10"
-              value={inputs.password}
-              onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
-            />
-          </div>
-
-          <div>
-            <label className="label block">
-              <span className="text-base label-text">Confirm Password</span>
-            </label>
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              className="w-full input input-bordered h-10"
-              value={inputs.confirmPassword}
-              onChange={(e) => setInputs({ ...inputs, confirmPassword: e.target.value })}
-            />
-          </div>
-
-          <div>
-            <label className="label block">
-              <span className="text-base label-text">Gender</span>
-            </label>
-            <GenderCheckbox
-              onCheckboxChange={handleCheckboxChange}
-              selectedGender={inputs.gender}
-            />
-          </div>
-
-          <div>
-            <label className="label block">
-              <span className="text-base label-text">Role</span>
-            </label>
-            <select
-              className="w-full input input-bordered h-10"
+    <Container component="main" maxWidth="xs">
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          padding: 3,
+          borderRadius: 1,
+          boxShadow: 3,
+          backgroundColor: 'white',
+        }}
+      >
+        <Avatar
+          src={Logo}
+          alt="Logo"
+          sx={{ width: 110, height: 110, mb: 2 }}
+        />
+        <Typography variant="h5" component="h1" gutterBottom>
+          Sign Up <span style={{ color: '#3b71ca' }}>ChatApp</span>
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+          <TextField
+            label="Full Name"
+            fullWidth
+            margin="normal"
+            variant="outlined"
+            value={inputs.name}
+            onChange={(e) => setInputs({ ...inputs, name: e.target.value })}
+          />
+          <TextField
+            label="Email"
+            type="email"
+            fullWidth
+            margin="normal"
+            variant="outlined"
+            value={inputs.email}
+            onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
+          />
+          <TextField
+            label="Password"
+            type="password"
+            fullWidth
+            margin="normal"
+            variant="outlined"
+            value={inputs.password}
+            onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
+          />
+          <TextField
+            label="Confirm Password"
+            type="password"
+            fullWidth
+            margin="normal"
+            variant="outlined"
+            value={inputs.confirmPassword}
+            onChange={(e) => setInputs({ ...inputs, confirmPassword: e.target.value })}
+          />
+          <FormControl component="fieldset" sx={{ mt: 2 }}>
+            <Typography variant="body1">Gender</Typography>
+            <FormGroup row>
+              <FormControlLabel
+                control={<Checkbox checked={inputs.gender === 'male'} onChange={() => handleCheckboxChange('male')} />}
+                label="Male"
+              />
+              <FormControlLabel
+                control={<Checkbox checked={inputs.gender === 'female'} onChange={() => handleCheckboxChange('female')} />}
+                label="Female"
+              />
+            </FormGroup>
+          </FormControl>
+          <FormControl fullWidth variant="outlined" sx={{ mt: 2 }}>
+            <InputLabel>Role</InputLabel>
+            <Select
               value={inputs.role}
               onChange={handleRoleChange}
+              label="Role"
             >
-              <option value="student">Student</option>
-              <option value="teacher">Teacher</option>
-            </select>
-          </div>
+              <MenuItem value="student">Student</MenuItem>
+              <MenuItem value="teacher">Teacher</MenuItem>
+            </Select>
+          </FormControl>
 
           {inputs.role === "student" && (
             <>
-              <div>
-                <label className="label block">
-                  <span className="text-base label-text">Course</span>
-                </label>
-                <select
-                  className="w-full input input-bordered h-10"
+              <FormControl fullWidth variant="outlined" sx={{ mt: 2 }}>
+                <InputLabel>Course</InputLabel>
+                <Select
                   value={inputs.course}
                   onChange={handleCourseChange}
+                  label="Course"
                 >
-                  <option value="">Select a course</option>
+                  <MenuItem value="">Select a course</MenuItem>
                   {courses.map((course) => (
-                    <option key={course} value={course}>
+                    <MenuItem key={course} value={course}>
                       {course}
-                    </option>
+                    </MenuItem>
                   ))}
-                </select>
-              </div>
+                </Select>
+              </FormControl>
 
-              <div>
-                <label className="label block">
-                  <span className="text-base label-text">Batch</span>
-                </label>
-                <select
-                  className="w-full input input-bordered h-10"
+              <FormControl fullWidth variant="outlined" sx={{ mt: 2 }}>
+                <InputLabel>Batch</InputLabel>
+                <Select
                   value={inputs.batch}
                   onChange={handleBatchChange}
+                  label="Batch"
                 >
-                  <option value="">Select a batch</option>
+                  <MenuItem value="">Select a batch</MenuItem>
                   {batches.map((batch) => (
-                    <option key={batch} value={batch}>
+                    <MenuItem key={batch} value={batch}>
                       {batch}
-                    </option>
+                    </MenuItem>
                   ))}
-                </select>
-              </div>
+                </Select>
+              </FormControl>
             </>
           )}
 
           {inputs.role === "teacher" && (
             <>
-              <div>
-                <label className="label block">
-                  <span className="text-base label-text">Courses</span>
-                </label>
+              <FormControl component="fieldset" sx={{ mt: 2 }}>
+                <Typography variant="body1">Courses</Typography>
                 {courses.map((course) => (
-                  <div key={course}>
-                    <label className="cursor-pointer">
-                      <input
-                        type="checkbox"
+                  <FormControlLabel
+                    key={course}
+                    control={
+                      <Checkbox
                         value={course}
                         checked={inputs.courses.includes(course)}
                         onChange={handleCoursesChange}
-                        className="mr-2"
                       />
-                      {course}
-                    </label>
-                  </div>
+                    }
+                    label={course}
+                  />
                 ))}
-              </div>
+              </FormControl>
 
-              <div>
-                <label className="label block">
-                  <span className="text-base label-text">Batches</span>
-                </label>
+              <FormControl component="fieldset" sx={{ mt: 2 }}>
+                <Typography variant="body1">Batches</Typography>
                 {batches.map((batch) => (
-                  <div key={batch}>
-                    <label className="cursor-pointer">
-                      <input
-                        type="checkbox"
+                  <FormControlLabel
+                    key={batch}
+                    control={
+                      <Checkbox
                         value={batch}
                         checked={inputs.batches.includes(batch)}
                         onChange={handleBatchesChange}
-                        className="mr-2"
                       />
-                      {batch}
-                    </label>
-                  </div>
+                    }
+                    label={batch}
+                  />
                 ))}
-              </div>
+              </FormControl>
 
-              <div>
-                <label className="label block">
-                  <span className="text-base label-text">Special Key</span>
-                </label>
-                <input
-                  type="password"
-                  placeholder="Enter special key"
-                  className="w-full input input-bordered h-10"
-                  value={inputs.specialKey}
-                  onChange={handleSpecialKeyChange}
-                />
-              </div>
+              <TextField
+                label="Special Key"
+                type="password"
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                value={inputs.specialKey}
+                onChange={handleSpecialKeyChange}
+              />
             </>
           )}
 
-          <Link
-            to={"/login"}
-            className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block"
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            sx={{ mt: 3, mb: 2 }}
+            disabled={loading}
           >
-            Already have an account?
-          </Link>
-
-          <div>
-            <button
-              className="btn btn-block btn-sm mt-2 border border-slate-700"
-              disabled={loading}
-            >
-              {loading ? (
-                <span className="loading loading-spinner"></span>
-              ) : (
-                "Sign Up"
-              )}
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+            {loading ? 'Loading...' : 'Sign Up'}
+          </Button>
+          <Typography variant="body2" align="center">
+            Already have an account?{' '}
+            <Link to="/login" style={{ color: '#3b71ca' }}>
+              Login
+            </Link>
+          </Typography>
+        </Box>
+      </Box>
+    </Container>
   );
 };
 

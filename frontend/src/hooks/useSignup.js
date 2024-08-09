@@ -28,6 +28,7 @@ const useSignup = () => {
         }
 
         if (role === "teacher" && specialKey !== SPECIAL_AUTH_FOR_TEACHER) {
+            // For Debugging
             console.log("Special Key Provided:", specialKey);
             console.log("Special Key Required:", SPECIAL_AUTH_FOR_TEACHER);
             toast.error("Invalid special key for teachers");
@@ -38,7 +39,7 @@ const useSignup = () => {
     };
 
     // Function to handle signup
-    const signup = async ({ name, email, password, confirmPassword, gender, role, courses, batches, specialKey }) => {
+    const signup = async ({ name, email, password, confirmPassword, gender, role,course,batch,courses, batches, specialKey }) => {
         const success = handleInputErrors({ name, email, password, confirmPassword, gender, role, specialKey });
         if (!success) return;
 
@@ -47,7 +48,7 @@ const useSignup = () => {
             const res = await fetch("/api/auth/signup", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, email, password, confirmPassword, gender, role, courses, batches, specialKey }),
+                body: JSON.stringify({ name, email, password, confirmPassword, gender, role, course,batch,courses, batches, specialKey }),
             });
 
             const data = await res.json();
