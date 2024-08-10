@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TextField, Button, Container, Typography, Box, CircularProgress, Alert } from '@mui/material';
+import { TextField, Button, Container, Typography, Box, CircularProgress, Alert,Avatar } from '@mui/material';
 import useLogin from '../../hooks/useLogin';
+import Logo from '../../../../frontend/public/smit.png'; // Ensure you have a logo or use a placeholder
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -38,6 +39,11 @@ const Login = () => {
           boxShadow: 3,
         }}
       >
+      <Avatar
+          src={Logo}
+          alt="Logo"
+          sx={{ width: 190, height: 110, mb: 2 ,borderRadius:0}}
+        />
         <Typography variant="h4" gutterBottom align="center">
           Login <span style={{ color: '#3b71ca' }}>ChatApp</span>
         </Typography>

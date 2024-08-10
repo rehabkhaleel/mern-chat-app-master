@@ -111,7 +111,7 @@ const SignUp = () => {
         <Avatar
           src={Logo}
           alt="Logo"
-          sx={{ width: 110, height: 110, mb: 2 }}
+          sx={{ width: 190, height: 110, mb: 2 ,borderRadius:0}}
         />
         <Typography variant="h5" component="h1" gutterBottom>
           Sign Up <span style={{ color: '#3b71ca' }}>ChatApp</span>
