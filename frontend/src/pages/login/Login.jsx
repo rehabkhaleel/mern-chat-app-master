@@ -42,7 +42,7 @@ const Login = () => {
       <Avatar
           src={Logo}
           alt="Logo"
-          sx={{ width: 190, height: 110, mb: 2 ,borderRadius:0}}
+          sx={{ width: 120, height: 110, mb: 2 ,borderRadius:0 ,display:'flex'}}
         />
         <Typography variant="h4" gutterBottom align="center">
           Login <span style={{ color: '#3b71ca' }}>ChatApp</span>

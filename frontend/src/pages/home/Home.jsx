@@ -3,14 +3,14 @@ import Sidebar from "../../components/sidebar/Sidebar";
 
 const Home = () => {
   return (
-    <div className="flex flex-col h-screen overflow-hidden">
-  <div className="flex-1 flex overflow-scroll">
-    <Sidebar className="w-64 bg-gray-800 text-white sm:w-56 md:w-48 lg:w-64 xl:w-72" />
-    <div className="flex-1 overflow-auto min-w-0 sm:min-w-[calc(100%-56px)] md:min-w-[calc(100%-48px)] lg:min-w-[calc(100%-64px)] xl:min-w-[calc(100%-72px)]">
-      <MessageContainer className="h-full" />
+    <div className="flex flex-col h-screen overflow-scroll min-w-[320px] max-w-[1200px] bg-sky-400">
+      <div className="flex h-full overflow-auto">
+        <Sidebar className="w-1/3  text-white" />
+        <div className="w-2/3 overflow-y-auto flex flex-col">
+          <MessageContainer className="flex-1" />
+        </div>
+      </div>
     </div>
-  </div>
-</div>
   );
 };
 

@@ -18,8 +18,8 @@ export const getUsersForSidebar = async (req, res) => {
       // Students can see teachers assigned to their course and batch
       filteredUsers = await User.find({
         role: "teacher",
-        course: loggedInUser.course,
-        batch: loggedInUser.batch
+        courses: { $in: [loggedInUser.course] },
+        batches: { $in: [loggedInUser.batch] }
       }).select("-password");
     } else {
       // For any other role or unexpected cases

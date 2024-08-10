@@ -11,22 +11,22 @@ const useGetConversations = () => {
 			try {
 				const res = await fetch("/api/users");
 				const data = await res.json();
-				if (data.error) {
-					throw new Error(data.error);
+				if (!res.ok) { // Check for HTTP errors
+					throw new Error(data.error || 'Failed to fetch conversations');
 				}
 				console.log("Fetched Conversations:", data); // Debugging
-				setConversations(data);
+				setConversations(data); // Update state with fetched conversations
 			} catch (error) {
-				toast.error(error.message);
+				toast.error(error.message); // Display error message
 			} finally {
-				setLoading(false);
+				setLoading(false); // Ensure loading state is turned off
 			}
 		};
 
 		getConversations();
 	}, []);
 
-	return { loading, conversations };
+	return { loading, conversations }; // Return loading and conversations state
 };
 
 export default useGetConversations;

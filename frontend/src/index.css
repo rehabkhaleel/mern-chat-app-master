@@ -5,7 +5,7 @@
 
 html, body {
   height: 100%;
-  margin: 0;
+  margin: 40px;
   padding: 0;
   background-color: #6d9ebf !important;
 }
@@ -18,7 +18,7 @@ body {
   font-family: 'Helvetica', sans-serif;
   color: #000000;
   overflow: scroll; /* Prevent body scrolling */
-  margin-top: 20rem;
+  /* margin-top: 20rem; */
 }
 
 /* Full-height overlay */
