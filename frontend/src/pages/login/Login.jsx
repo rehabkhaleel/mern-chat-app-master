@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { TextField, Button, Container, Typography, Box, CircularProgress, Alert,Avatar } from '@mui/material';
 import useLogin from '../../hooks/useLogin';
 import Logo from '../../../../frontend/public/smit.png'; // Ensure you have a logo or use a placeholder
+import Header from '../../components/header/Header';
+import Footer from '../../components/footer/Footer';
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -27,7 +29,8 @@ const Login = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" overflow-y="hidden">
+    <Header></Header>
       <Box
         sx={{
           display: 'flex',
@@ -39,10 +42,10 @@ const Login = () => {
           boxShadow: 3,
         }}
       >
-      <Avatar
+       <Avatar
           src={Logo}
           alt="Logo"
-          sx={{ width: 120, height: 110, mb: 2 ,borderRadius:0 ,display:'flex'}}
+          sx={{ width: 190, height: 110, mb: 2 ,borderRadius:0}}
         />
         <Typography variant="h4" gutterBottom align="center">
           Login <span style={{ color: '#3b71ca' }}>ChatApp</span>
@@ -79,7 +82,7 @@ const Login = () => {
             to="/signup"
             style={{ display: 'block', marginTop: 8, textAlign: 'center', color: '#3b71ca', textDecoration: 'none' }}
           >
-            Don't have an account?
+            Don't have an account? Register
           </Link>
 
           <Button
@@ -93,7 +96,10 @@ const Login = () => {
             {loading ? <CircularProgress size={24} color="inherit" /> : "Login"}
           </Button>
         </form>
+        <Footer></Footer>
       </Box>
+    
+    
     </Container>
   );
 };

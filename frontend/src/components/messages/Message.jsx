@@ -14,7 +14,7 @@ const Message = ({ message }) => {
         ? (authUser.profilePic || "https://via.placeholder.com/150") // Default image if no profile picture
         : (selectedConversation?.profilePic || "https://via.placeholder.com/150"); // Default image if no profile picture
 
-    const bubbleBgColor = fromMe ? "bg-blue-500" : "bg-gray-300"; // Adjusted for better visibility
+    const bubbleBgColor = fromMe ? "bg-green-500" : "bg-blue-500"; // Adjusted for better visibility
     const shakeClass = message.shouldShake ? "shake" : "";
 
     // Debugging logs

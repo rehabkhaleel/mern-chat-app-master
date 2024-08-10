@@ -1,8 +1,24 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { TextField, Button, FormControl, InputLabel, Select, MenuItem, Checkbox, FormControlLabel, FormGroup, Typography, Container, Box, Avatar } from '@mui/material';
-import useSignup from '../../hooks/useSignup';
-import Logo from '../../../../frontend/public/smit.png'; // Ensure you have a logo or use a placeholder
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  TextField,
+  Button,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  Typography,
+  Container,
+  Box,
+  Avatar,
+} from "@mui/material";
+import useSignup from "../../hooks/useSignup";
+import Logo from "../../../../frontend/public/smit.png"; // Ensure you have a logo or use a placeholder
+import Header from "../../components/header/Header";
+import Footer from "../../components/footer/Footer";
 
 const courses = [
   "Graphics Designing",
@@ -67,21 +83,21 @@ const SignUp = () => {
 
   const handleCoursesChange = (e) => {
     const { value, checked } = e.target;
-    setInputs(prevInputs => ({
+    setInputs((prevInputs) => ({
       ...prevInputs,
       courses: checked
         ? [...prevInputs.courses, value]
-        : prevInputs.courses.filter(course => course !== value),
+        : prevInputs.courses.filter((course) => course !== value),
     }));
   };
 
   const handleBatchesChange = (e) => {
     const { value, checked } = e.target;
-    setInputs(prevInputs => ({
+    setInputs((prevInputs) => ({
       ...prevInputs,
       batches: checked
         ? [...prevInputs.batches, value]
-        : prevInputs.batches.filter(batch => batch !== value),
+        : prevInputs.batches.filter((batch) => batch !== value),
     }));
   };
 
@@ -96,28 +112,42 @@ const SignUp = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs" className='signup-container'>
+    <Container component="main" maxWidth="xs" className="signup-container">
+      <Header></Header>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
           padding: 7,
           borderRadius: 1,
           boxShadow: 3,
-          backgroundColor: 'white',
+          backgroundColor: "white",
+          marginTop: 2,
         }}
       >
         <Avatar
           src={Logo}
           alt="Logo"
-          sx={{ width: 190, height: 110, mb: 2 ,borderRadius:0}}
+          sx={{ width: 190, height: 110, mb: 2, borderRadius: 0 }}
         />
         <Typography variant="h5" component="h1" gutterBottom>
-          Sign Up <span style={{ color: '#3b71ca' }}>ChatApp</span>
+          Sign Up <span style={{ color: "#3b71ca" }}>ChatApp</span>
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
-        
+
+        {/* form */}
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{ mt: 1,
+           minHeight: "100vh" 
+           }}
+        >
           <TextField
             label="Full Name"
             fullWidth
@@ -151,17 +181,29 @@ const SignUp = () => {
             margin="normal"
             variant="outlined"
             value={inputs.confirmPassword}
-            onChange={(e) => setInputs({ ...inputs, confirmPassword: e.target.value })}
+            onChange={(e) =>
+              setInputs({ ...inputs, confirmPassword: e.target.value })
+            }
           />
           <FormControl component="fieldset" sx={{ mt: 2 }}>
             <Typography variant="body1">Gender</Typography>
             <FormGroup row>
               <FormControlLabel
-                control={<Checkbox checked={inputs.gender === 'male'} onChange={() => handleCheckboxChange('male')} />}
+                control={
+                  <Checkbox
+                    checked={inputs.gender === "male"}
+                    onChange={() => handleCheckboxChange("male")}
+                  />
+                }
                 label="Male"
               />
               <FormControlLabel
-                control={<Checkbox checked={inputs.gender === 'female'} onChange={() => handleCheckboxChange('female')} />}
+                control={
+                  <Checkbox
+                    checked={inputs.gender === "female"}
+                    onChange={() => handleCheckboxChange("female")}
+                  />
+                }
                 label="Female"
               />
             </FormGroup>
@@ -270,15 +312,21 @@ const SignUp = () => {
             sx={{ mt: 3, mb: 2 }}
             disabled={loading}
           >
-            {loading ? 'Loading...' : 'Sign Up'}
+            {loading ? "Loading..." : "Sign Up"}
           </Button>
           <Typography variant="body2" align="center">
-            Already have an account?{' '}
-            <Link to="/login" style={{ color: '#3b71ca' }}>
+            Already have an account?{" "}
+            <Link to="/login" style={{ color: "#3b71ca" }}>
               Login
             </Link>
           </Typography>
+          <br></br>
         </Box>
+<br></br>
+        
+        <br></br>
+      <Footer></Footer>
+
       </Box>
     </Container>
   );
