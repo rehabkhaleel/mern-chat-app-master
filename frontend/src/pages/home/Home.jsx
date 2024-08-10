@@ -12,8 +12,9 @@ const Home = () => {
         <div className="w-2/3 overflow-y-auto flex flex-col">
           <MessageContainer className="flex-1 text-black" />
         </div>
+        <Footer></Footer>
       </div>
-      <Footer></Footer>
+      
     </div>
   );
 };
